@@ -1,0 +1,21 @@
+
+- Gioi thieu
+- Gio thieu angularjs.
+	+ Cac tinh nang cot loi
+		* Data biding
+		* Module
+		* Scope:
+			+ http://kungfuphp.com/angularjs/bai-5-scope-trong-angularjs.html
+			+ http://www.hoclaptrinh.org/Angular-JS-Co-Ban/AngularJS-Scope
+		* Controller: http://dongdiemthuy.github.io/javascript/angularjs/2014/10/19/controller-trong-angularjs.html
+		* Service: http://xuantain.github.io/javascript/angularjs/2014/12/20/khai-niem-services-trong-angularjs/
+		* Filters: http://dongdiemthuy.github.io/javascript/angularjs/2014/11/14/filter-trong-angularjs%201.html
+		* Directives: http://thegioi360.vn/posts/m3580-Directive-trong-AngularJS
+		* Template
+		* Routing: https://viblo.asia/p/tim-hieu-ve-route-trong-angularjs-DXOkRQaBedZ
+		* MVC: http://vietjack.com/angularjs/cau_truc_mvc_trong_angularjs.jsp
+		* Deep Linking
+		* Dependancy injection
+	+ Uu diem: https://techtalk.vn/tong-quan-ve-angularjs.html
+	+ Nhuoc diem: https://techtalk.vn/tong-quan-ve-angularjs.html
+- Su dung AngularJS xay dung font-end web ban hang.
