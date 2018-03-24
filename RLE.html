@@ -1,19 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Run Length Encoding</title>
-  </head>
-  <body style="background-color: #EEE;" data-ng-app="RLE-App">
+	<style>
+		body {
+			background-color: #EEE;
+		}
+		.titleNav {
+			width: 100%;
+		}
+		
+		$custom-file-text: (
+		  en: "Chon",
+		  es: "Chon"
+		);
+	</style>
+</head>
+<body data-ng-app="RLE-App">
   	<div class="w-100" style="margin-bottom: 40px;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light text-center">
-		  <h2 style="width: 100%;">Chương Trình Nén Dữ Liệu</h2>
+		  <h2 class="titleNav">Chương Trình Nén Dữ Liệu</h2>
 		</nav>
 	</div>
 	
@@ -26,15 +39,16 @@
 					</div>
 					<div class="card-body text-primary">
 						<form enctype="multipart/form-data" action="/compress" method="POST">
+
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="uploadFileCompress" name="file" onchange="getFile()" />
-								<label for="uploadFileCompress" id="fileNameCompress" class="custom-file-label">Choose file...</label>
+								<label for="uploadFileCompress" id="fileNameCompress" class="custom-file-label">Chọn file để nén...</label>
 								<div class="invalid-feedback"></div>
 							</div>
-							
-							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="uploadURLCompress" webkitdirectory directory multiple/>
-								<label for="uploadURL" class="custom-file-label" id="directoryNameCompress">Choose Url...</label>
+
+							<div class="mt-3 custom-file">
+								<input type="file" class="custom-file-input" id="uploadURLCompress" webkitdirectory directory multiple />
+								<label for="uploadURLCompress" class="custom-file-label" id="labelURLNameCompress">Chọn nơi lưu trữ file đã nén...</label>
 								<div class="invalid-feedback"></div>
 							</div>
 							
@@ -46,7 +60,7 @@
 							
 							<div class="text-center">
 								<button type="submit" class="btn btn-outline-primary">Nén file</button>
-								<button type="reset" class="btn btn-outline-danger">Hủy bỏ</button>
+								<button type="reset" class="btn btn-outline-danger" id="cancelCompress">Hủy bỏ</button>
 							</div>
 						</form>
 						
@@ -55,7 +69,7 @@
 						<p>Tên file: {{ fileName }}</p>
 						<p>Kích thước ban đầu: {{ fileSize }}</p>
 						<p>Kích thước đã nén: {{ sizeCompress }}</p>
-						<a href="C:\Users\MyPC\Downloads" onclick="">Thư mục lưu trữ file</a>
+						<a href="#" id="showUrlCompress">Thư mục lưu trữ file</a>
 					</div>
 				</div>
 			</div>
@@ -69,7 +83,13 @@
 						<form enctype="multipart/form-data" action="/deCompress" method="POST">
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="uploadFileDecompress" name="file" onchange="getFile()" />
-								<label for="uploadFileDecompress" id="fileNameDecompress" class="custom-file-label">Choose file...</label>
+								<label for="uploadFileDecompress" id="fileNameDecompress" class="custom-file-label">Chọn file để giải nén...</label>
+								<div class="invalid-feedback"></div>
+							</div>
+							
+							<div class="mt-3 custom-file">
+								<input type="file" class="custom-file-input" id="uploadURLDecompress" webkitdirectory directory multiple/>
+								<label for="uploadURLDecompress" class="custom-file-label" id="labelURLNameDecompress">Chọn nơi lưu trữ file đã giải nén...</label>
 								<div class="invalid-feedback"></div>
 							</div>
 							
@@ -81,7 +101,7 @@
 							
 							<div class="text-center">
 								<button type="submit" class="btn btn-outline-info">Giải nén file</button>
-								<button type="reset" class="btn btn-outline-danger">Hủy bỏ</button>
+								<button type="reset" class="btn btn-outline-danger" id="cancelDecompress">Hủy bỏ</button>
 							</div>
 						</form>
 						
@@ -90,51 +110,123 @@
 						<p>Tên file: {{ fileName }}</p>
 						<p>Kích thước ban đầu: {{ fileSize }}</p>
 						<p>Kích thước đã giải nén: {{ sizeDecompress }}</p>
-						<a href="C:\Users\MyPC\Downloads" onclick="">Thư mục lưu trữ file</a>
+						<a href="#" id="showUrlDecompress">Thư mục lưu trữ file</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- Modal click area disabled -->
+	<div class="modal fade" id="areaDisabled" tabindex="-1" role="dialog" aria-labelledby="areaDisabledTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLongTitle">Cảnh báo</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <div class="modal-body">
+			Bạn chỉ được sử dụng một chức năng. Nếu bạn muốn sử dụng chắc năng khác thì hãy hủy bỏ chứ năng đã chọn.
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Đóng</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
 	<script>
+		
+	
+		// Label input file
+		let labelFileNameCompress = document.getElementById('fileNameCompress');
+		let labelFileNameDeCompress = document.getElementById('fileNameDecompress');
+		// Label input url
+		let labelURLNameCompress = document.getElementById('labelURLNameCompress');
+		let labelURLNameDecompress = document.getElementById('labelURLNameDecompress');
+		// Tag a, function show url as soon as handle file
+		let showUrlCompress = document.getElementById('showUrlCompress');
+		let showUrlDecompress = document.getElementById('showUrlDecompress');
+		
+		// Set atribute button cancel
+		document.getElementById('cancelCompress').setAttribute('onclick', 'refreshValue()')
+		document.getElementById('cancelDecompress').setAttribute('onclick', 'refreshValue()')
+		
 		function getFile() {
 			// Input upload file
 			let inputCompressValue = document.getElementById('uploadFileCompress').value;
 			let inputDecompressValue = document.getElementById('uploadFileDecompress').value;
-			// Input upload URL
-			//let inputURLCompressValue = document.getElementById('uploadURLCompress').value;
-			//console.log(inputURLCompressValue);
-			// Label input file
-			let labelFileNameCompress = document.getElementById('fileNameCompress');
-			let labelFileNameDeCompress = document.getElementById('fileNameDecompress');
-			// Label input directory
-			//let labelDirectoryNameCompress = document.getElementById('directoryNameCompress');
-					
+			// Input upload file split
 			let arrFileNameCompress = inputCompressValue.split('\\');
 			let arrFileNameDeCompress = inputDecompressValue.split('\\');
-			
-			//var fileName = arrFileName[arrFileName.length - 1];
+					
 			if(inputCompressValue === '' && inputDecompressValue !== '') {
-				labelFileNameCompress.innerHTML = 'Choose file...';
+				defaultValueCardCompress()	
 				$('#compressArea *').prop('disabled',true);
+				$('#compressArea *').css('cursor','no-drop');
+				showUrlCompress.removeAttribute('href');
+				clickAreaDisabled('compressArea');
 				labelFileNameDeCompress.innerHTML = arrFileNameDeCompress[arrFileNameDeCompress.length - 1];
-				//labelDirectoryNameCompress.innerHTML = inputURLCompressValue;
 			} else {
-				labelFileNameDeCompress.innerHTML = 'Choose file...';
+				defaultValueCardDecompress();
 				$('#deCompressArea *').prop('disabled',true);
+				$('#deCompressArea *').css('cursor','no-drop');
+				showUrlDecompress.removeAttribute('href');
+				clickAreaDisabled('deCompressArea');
 				labelFileNameCompress.innerHTML = arrFileNameCompress[arrFileNameCompress.length - 1];
 			}
 		}
+		
+		function getUrl(e) {
+			let inputURLCompressValue = document.getElementById('uploadURLCompress').value;
+			console.log('url compress: ' + inputURLCompressValue);
+		}
+		
+		function refreshValue() {
+			//Card Compress
+			defaultValueCardCompress();
+			//Card Decompress
+			defaultValueCardDecompress();
+			$('.container *').prop('disabled',false);
+		}
+		
+		function defaultValueCardCompress() {
+			labelFileNameCompress.innerHTML = 'Chọn file để nén...';
+			labelURLNameCompress.innerHTML = 'Chọn nơi lưu trữ file đã nén...';
+			showUrlCompress.setAttribute('href', '#');
+			$('#compressArea *').css('cursor','');
+			$('#compressArea').removeAttr('data-toggle data-target');
+			$('#compressArea').unbind('click');
+		}
+		
+		function defaultValueCardDecompress() {
+			labelFileNameDeCompress.innerHTML = 'Chọn file để giải nén...';
+			labelURLNameDecompress.innerHTML = 'Chọn nơi lưu trữ file đã giải nén...';
+			showUrlDecompress.setAttribute('href', '#');
+			$('#deCompressArea *').css('cursor','');
+			$('#deCompressArea').removeAttr('data-toggle data-target');
+			$('#deCompressArea').unbind('click');
+		}
+		
+		function clickAreaDisabled(card) {
+			$('#' + card).click(function(e) {
+				if ($(e.target).parents('#' + card).length) {
+					document.getElementById(card).setAttribute('data-toggle', 'modal')
+					document.getElementById(card).setAttribute('data-target', '#areaDisabled');
+				}
+			});
+		}
+		
 	</script>
 	
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="/assets/libs/jquery-3.2.1.slim.min.js"></script>
-    <script src="/assets/libs/popper.min.js"></script>
-    <script src="/assets/libs/bootstrap.min.js"></script>
-    <script src="/assets/libs/angular.min.js"></script>
-    <script src="/assets/libs/angular.min.js"></script>
-    <script src="main.js"></script>
-  </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 </html>
