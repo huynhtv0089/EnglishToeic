@@ -45,6 +45,15 @@
 								<label for="uploadFileCompress" id="fileNameCompress" class="custom-file-label">Chọn file để nén...</label>
 								<div class="invalid-feedback"></div>
 							</div>
+							
+							<div class="mt-4 form-group row">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" id="uploadURLCompress" name="storeUrl" placeholder="Nhập đường dẫn, nơi lưu trữ file sau khi nén xong.">
+							      <div class="ml-4">
+							        (ví dụ: C:\Users\xxx\Documents\Downloads)
+							      </div>
+							    </div>
+							</div>
 
 							<div class="mt-3 custom-file">
 								<input type="file" class="custom-file-input" id="uploadURLCompress" webkitdirectory directory multiple />
@@ -85,6 +94,15 @@
 								<input type="file" class="custom-file-input" id="uploadFileDecompress" name="file" onchange="getFile()" />
 								<label for="uploadFileDecompress" id="fileNameDecompress" class="custom-file-label">Chọn file để giải nén...</label>
 								<div class="invalid-feedback"></div>
+							</div>
+							
+							<div class="mt-4 form-group row">
+							    <div class="col-sm-12">
+							      <input type="text" class="form-control" id="uploadURLDecompress" name="storeUrl" placeholder="Nhập đường dẫn, nơi lưu trữ file sau khi giải nén xong.">
+							      <div class="ml-4">
+							        (ví dụ: C:\Users\xxx\Documents\Downloads)
+							      </div>
+							    </div>
 							</div>
 							
 							<div class="mt-3 custom-file">
