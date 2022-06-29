@@ -1,0 +1,6 @@
+If the broker holding the leader for the partition fails to serve the data due to any failure, one of its respective ISR replicas will takeover the leadership. 
+Afterward, if the previous leader returns back, it tries to acquire its leadership again.
+
+If the value of key=NULL, it means that the data is sent without a key. Thus, it will be distributed in a round-robin manner (i.e., distributed to each partition).
+
+If the value of the key!=NULL, it means the key is attached with the data, and thus all messages will always be delivered to the same partition.
