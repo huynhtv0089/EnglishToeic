@@ -4,3 +4,5 @@ Afterward, if the previous leader returns back, it tries to acquire its leadersh
 If the value of key=NULL, it means that the data is sent without a key. Thus, it will be distributed in a round-robin manner (i.e., distributed to each partition).
 
 If the value of the key!=NULL, it means the key is attached with the data, and thus all messages will always be delivered to the same partition.
+
+If you don't have ``sudo`` permissions or want to install the AWS CLI v2 only for the current user, run the `install` script with the `-b` and `-i` options
