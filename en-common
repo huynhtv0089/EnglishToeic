@@ -30,3 +30,7 @@ keytool -import -alias example -keystore  "C:\Program Files (x86)\Java\jre1.6.0_
 You will be asked for password which default is changeit
 
 Restart your JVM/PC.
+
+Minh yeu nhau di 
+Ke danh cap mat trang
+Co hen voi thanh xuan
