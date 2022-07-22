@@ -18,6 +18,8 @@ In which situations are SonarQube and Checkmarx preferred?
 Hi all. I'm new to using DefectDojo, I recently installed it, but unfortunately I don't know how to import reports from checkmarx, I searched for tutorials or something and got nothing.
 Anyone who has the steps will be great and healful
 
+I'm creating and installing an SSL certificate via command line for the first time and have a question.
+
 The DefectDojo-Java-Client has been moved to https://github.com/SDA-SE/defectdojo-client. In case you are looking for a java library, take a look at https://github.com/secureCodeBox/defectdojo-client-java.
 
 1. Go to URL in your browser:
