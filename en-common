@@ -72,3 +72,6 @@ Market capitalization (market cap): giá trị vốn hóa thị trường
 
 K8s Horizontal Pod Autoscaler | HPA Manifest File Explained | Pod Requests Limits | HPA Demo
 link: https://www.youtube.com/watch?v=3BnrXapY7zo
+
+CPU là tên viết tắt của (Central Processing Unit) hiểu cơ bản nhất là một cơ quan đầu não trong máy tính có vai trò chính là phân tích và xử lý dữ liệu được truyền tải đến thông qua các tập lệnh.
+GPU (Graphic Proccessing Unit): Là bộ vi xử lý chuyên phân tích những tác vụ liên quan tới đồ họa và video, những khối dữ liệu hình ảnh. Khác với CPU, GPU chuyên thực hiện nhiệm vụ xử lý những tác vụ hình ảnh.
