@@ -77,3 +77,5 @@ GPU (Graphic Proccessing Unit): Là bộ vi xử lý chuyên phân tích những
 Trình quản lý bộ nhớ của Linux giới hạn dung lượng của mỗi không gian swap là 2GB, tuy nhiên bạn có thể sử dụng đồng thời đến 8 swap spaces , tất cả là 16BG.
 
 https://github.com/kubernetes-sigs/metrics-server/issues/146
+
+https://www.linuxsysadmins.com/service-unavailable-kubernetes-metrics/
