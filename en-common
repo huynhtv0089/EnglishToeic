@@ -101,6 +101,18 @@ guru.springframework.controllers logger to log DEBUG and higher level messages t
 For the production profile, we configured the same logger to log WARN and higher level messages to a file.
 To pass a profile to the application, run the application with the -Dspring.profiles.active= JVM argument.
 
+Another approach that could handle multiple profiles is to create a separate properties file for each environment.
+  application-prod.properties
+    logging.config=classpath:logback-prod.xml
+  application-dev.properties
+    logging.config=classpath:logback-dev.xml
+  application-local.properties
+    logging.config=classpath:logback-local.xml
+BE AWARE
+If you aren't careful you could end up logging somewhere unexpected
+  -Dspring.profiles.active=local,dev //will use logback-dev.xml
+  -Dspring.profiles.active=dev,local //will use logback-local.xml
+
 I am using logback with slf4j in my Maven Java project. Currently logback config file (logback.xml) is in src -> main -> resources folder. And it is working fine.
 My issue is, I need to give my client the ability to configure logging as he prefers. For that logback.xml should be outside the jar when I build it. But as xml is inside src folder it is inside the jar and no one can change it after build.
 How to achieve this?
