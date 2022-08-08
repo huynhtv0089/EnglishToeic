@@ -80,6 +80,26 @@ https://github.com/kubernetes-sigs/metrics-server/issues/146
 
 https://www.linuxsysadmins.com/service-unavailable-kubernetes-metrics/
 
+Here is an XML example to configure Logback using active Spring profiles.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <springProfile name="dev,staging">
+        <logger name="guru.springframework.controllers" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>>
+    </springProfile>
+    <springProfile name="production">
+        <logger name="guru.springframework.controllers" level="WARN" additivity="false">
+            <appender-ref ref="FILE" />
+        </logger>
+    </springProfile>
+ </configuration>
+In the configuration code above, for the dev and staging profiles, we configured the 
+guru.springframework.controllers logger to log DEBUG and higher level messages to console. 
+For the production profile, we configured the same logger to log WARN and higher level messages to a file.
+To pass a profile to the application, run the application with the -Dspring.profiles.active= JVM argument.
 
 Todo:
   k8s
