@@ -112,6 +112,7 @@ BE AWARE
 If you aren't careful you could end up logging somewhere unexpected
   -Dspring.profiles.active=local,dev //will use logback-dev.xml
   -Dspring.profiles.active=dev,local //will use logback-local.xml
+Phải đúng tên logback hoặc logback* nó mới nhận, k đúng tên thì k nhận gì cả, và phải để trong thư mục resource để nó quét file đó.
   
 mvn test -Dtests=ApplicationTests -Dlogging.config=classpath:logback-test.xml
 
