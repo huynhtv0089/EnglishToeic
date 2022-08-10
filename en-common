@@ -126,6 +126,9 @@ I am using logback with slf4j in my Maven Java project. Currently logback config
 My issue is, I need to give my client the ability to configure logging as he prefers. For that logback.xml should be outside the jar when I build it. But as xml is inside src folder it is inside the jar and no one can change it after build.
 How to achieve this?
 
+2 tech stack phổ biến nhất hiện nay cho việc log là ELK (Elasticsearch Logstash Kibana) và EFK (Elasticsearch FluentD Kibana).
+FluentD cũng là một công cụ dùng để thu thập log giống như Filebeat và Logstash. FluentD bao gồm các tính năng như theo dõi log, thu thập, phân tích và chuyển đổi log thành dạng thích hợp để lưu vào Elasticsearch. FluentD được phát triển bởi Cloud Native Computing Foundation (CNCF), đây là tổ chức phát triển và bảo trì kubernetes.
+
 Todo:
   k8s
   aws
