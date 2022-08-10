@@ -120,38 +120,38 @@ MDC.get("traceId") nó sẽ get X-B3-TraceId từ logback của log4j, có thể
 
 mvn test -Dtests=ApplicationTests -Dlogging.config=classpath:logback-test.xml
 
-Swap là khái niệm bộ nhớ ảo được sử dụng trên hệ điều hành Linux. Khi VPS/Server hoạt động, nếu hết RAM hệ thống sẽ tự động sử dụng một phần ổ cứng để làm bộ nhớ cho các ứng dụng hoạt động.
 Nếu hệ thống thiếu RAM, Linux sẽ chuyển cache vào SWAP để dành toàn bộ RAM cho các process đang thực thi.
 Vậy muốn biết hệ thống của bạn có đang bị thiếu RAM, hãy nhìn vào chỉ số SWAP. Nếu SWAP cao nghĩa là máy đang thiếu RAM
 Câu lệnh Free là lệnh đơn giản và dễ sử dụng nhất để kiểm tra việc sử dụng bộ nhớ trên linux:
-	free -m  
+    free -m  
+  Swap là khái niệm bộ nhớ ảo được sử dụng trên hệ điều hành Linux. Khi VPS/Server hoạt động, nếu hết RAM hệ thống sẽ tự động sử dụng một phần ổ cứng để làm bộ nhớ cho các ứng dụng hoạt động.
 Lệnh vmstat với tùy chọn s, đưa ra số liệu thống kê sử dụng bộ nhớ giống như lệnh Proc:
-	vmstat -s
+    vmstat -s
   Xem thêm các tham số khác, thì dùng --help
 Kiểm tra số core CPU trên máy:
-	cat /proc/cpuinfo | grep -c 'core id' | uniq | wc -l
+    cat /proc/cpuinfo | grep -c 'core id' | uniq | wc -l
 Kiểm tra tổng số thread, của mỗi core:
-	cat /proc/cpuinfo | grep processor | uniq | wc -l
+    cat /proc/cpuinfo | grep processor | uniq | wc -l
   Ví dụ: có 4 core, mỗi core là 1 thread
 Lệnh top và htop:
-	lệnh top để Kiểm tra hiệu năng CPU: 
-		Dòng đầu tiên cho biết:
-			+ thời gian hiện tại là 19:58
-			+ Server đã được bật 2 ngày
-			+ Số user đang login : 1
-			+ Load trung bình của server trong 5/10/15 phút lần lượt là 1,38, 1,15, 0,87 phần này khá quan trọng và mình sẽ nói cụ thể hơn bên dưới
-		Dòng số 2 cho biết có số lượng tiến trình đang hoạt động
-		Dòng số 3: cho biết tình trạng sử dụng CPU. 16.5 us, 8,3 sy nghĩa là user dùng 16.5% và system dùng 8,3%
-		Tiếp theo là các thông tin về RAM và SWAP mình sẽ nói cụ thể hơn ở phần RAM bên dưới
+    lệnh top để Kiểm tra hiệu năng CPU: 
+	Dòng đầu tiên cho biết:
+		+ thời gian hiện tại là 19:58
+		+ Server đã được bật 2 ngày
+		+ Số user đang login : 1
+		+ Load trung bình của server trong 5/10/15 phút lần lượt là 1,38, 1,15, 0,87 phần này khá quan trọng và mình sẽ nói cụ thể hơn bên dưới
+	Dòng số 2 cho biết có số lượng tiến trình đang hoạt động
+	Dòng số 3: cho biết tình trạng sử dụng CPU. 16.5 us, 8,3 sy nghĩa là user dùng 16.5% và system dùng 8,3%
+	Tiếp theo là các thông tin về RAM và SWAP mình sẽ nói cụ thể hơn ở phần RAM bên dưới
 	Giải thích Load AVG CPU: Load avg có thể hiểu là TỔNG số lượng process trung bình trong hàng chờ của CPU. Load avg thường được biểu diễn dưới dạng 3 con số, là trung bình trong 5-10-15 phút. 
-		Ví dụ ở đây mình có 4 CPU có nghĩa và load avg trong 5 phút là 1.38. Có nghĩa là Load avg / 1 CPU là: 1.38/4 =0.345
+	    Ví dụ ở đây mình có 4 CPU có nghĩa và load avg trong 5 phút là 1.38. Có nghĩa là Load avg / 1 CPU là: 1.38/4 =0.345
 	    Con số này càng cao thì số lượng process phải chờ CPU xử lí càng nhiều. Phải hiểu rằng, tại 1 thời điểm, 1 cpu chỉ có thể thực thi 1 process. Những process khác sẽ phải chờ đến khi CPU rảnh mới có thể được thực hiện. Cần phân biệt con số này với % sử dụng CPU.
-			+ % sử dụng CPU cho biết 1 process sử dụng CPU nhiều hay ít
-			+ Load avg thế hiện số process phải chờ CPU nhiều hay ít
-		Nắm được 2 con số này sẽ giúp ta đánh giá được hiệu quả hoạt động của CPU và có những giải pháp thích hợp. Ví dụ như với một máy chủ lưu trữ image dùng chung, hoặc 1 máy chủ LB, không cần xử lí nhiều Logic, chùng ta không cần CPU quá mạnh nhưng sẽ cần nhiều luồng để xử lí nhiều request đồng thời
-		Đối với việc theo dõi Load avg của CPU, các quản trị viên thường lấy mốc 0.7 /1CPU làm mốc. Nếu vượt ngưỡng này, cần phải theo dõi và có những giải pháp thích hợp (tăng cpu, tăng luồng,..).
+		+ % sử dụng CPU cho biết 1 process sử dụng CPU nhiều hay ít
+		+ Load avg thế hiện số process phải chờ CPU nhiều hay ít
+	    Nắm được 2 con số này sẽ giúp ta đánh giá được hiệu quả hoạt động của CPU và có những giải pháp thích hợp. Ví dụ như với một máy chủ lưu trữ image dùng chung, hoặc 1 máy chủ LB, không cần xử lí nhiều Logic, chùng ta không cần CPU quá mạnh nhưng sẽ cần nhiều luồng để xử lí nhiều request đồng thời
+	    Đối với việc theo dõi Load avg của CPU, các quản trị viên thường lấy mốc 0.7 /1CPU làm mốc. Nếu vượt ngưỡng này, cần phải theo dõi và có những giải pháp thích hợp (tăng cpu, tăng luồng,..).
 Kiểm tra thông tin CPU:
-	cat /proc/cpuinfo
+   cat /proc/cpuinfo
 
 
 I am using logback with slf4j in my Maven Java project. Currently logback config file (logback.xml) is in src -> main -> resources folder. And it is working fine.
