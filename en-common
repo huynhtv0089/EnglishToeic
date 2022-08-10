@@ -120,7 +120,9 @@ MDC.get("traceId") nó sẽ get X-B3-TraceId từ logback của log4j, có thể
 
 mvn test -Dtests=ApplicationTests -Dlogging.config=classpath:logback-test.xml
 
+Nếu hệ thống thiếu RAM, Linux sẽ chuyển cache vào SWAP để dành toàn bộ RAM cho các process đang thực thi.
 Swap là khái niệm bộ nhớ ảo được sử dụng trên hệ điều hành Linux. Khi VPS/Server hoạt động, nếu hết RAM hệ thống sẽ tự động sử dụng một phần ổ cứng để làm bộ nhớ cho các ứng dụng hoạt động.
+
 
 I am using logback with slf4j in my Maven Java project. Currently logback config file (logback.xml) is in src -> main -> resources folder. And it is working fine.
 My issue is, I need to give my client the ability to configure logging as he prefers. For that logback.xml should be outside the jar when I build it. But as xml is inside src folder it is inside the jar and no one can change it after build.
