@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>HTML DOM Events</h1>
+    <p>
+        <button onclick="initial()">Get list question</button>
+    </p>
+    <button id="practice" onclick="practice()" disabled>Start Now</button> 
+    <span>Còn <span id="count">0</span> câu hỏi</span>
+
+    <p id="question">....................</p>
+
+    <p><input type="text" id="answer" autocomplete="off" /></p>
+
+    <button id="submit" onclick="submit()" disabled>Submit</button>
+
+    <script>
+        var arr = [
+            {
+                "question": "Một",
+                "correctAnswer": "one"
+            },
+            {
+                "question": "Hai",
+                "correctAnswer": "two"
+            },
+            {
+                "question": "Ba",
+                "correctAnswer": "Three"
+            },
+            {
+                "question": "Bốn",
+                "correctAnswer": "four"
+            },
+            {
+                "question": "Năm",
+                "correctAnswer": "five"
+            }
+        ];
+        var arrNotAskedYet = [];
+        var id = 0;
+
+        var initial = function() {
+        	let count = 0;
+            for (let i in arr) {
+            	let item = arr[i];
+                item.id = parseInt(i);
+                item.answer = '';
+                item.result = false;
+                item.isAsked = false;
+
+                count++;
+            }
+            
+            document.getElementById("count").innerHTML = count;
+            document.getElementById("practice").disabled = false;
+            document.getElementById("submit").disabled = false;
+        }
+
+        var practice = function() {
+            document.getElementById("answer").value = '';
+            arrNotAskedYet = arr.filter(item => !item.isAsked); 
+            if (arrNotAskedYet.length === 0) {
+                console.log("There is no question");
+                document.getElementById("submit").disabled = true;      
+                return;
+            }
+            
+            let index = Math.floor((Math.random() * arrNotAskedYet.length));
+            let item = arrNotAskedYet[index];
+            item.isAsked = true;
+            id = item.id;
+            document.getElementById("count").innerHTML = arrNotAskedYet.length - 1;
+            document.getElementById("question").innerHTML = item.question;
+            document.getElementById("practice").disabled = true;
+        }
+
+        var submit = function () {
+            let answer = document.getElementById("answer").value.trim() || '';
+            if (answer === '') {
+                return;
+            }
+            
+            clear();
+
+            let item = arr.find(item => item.id === id);
+            if (item) {
+                item.answer = answer;
+                item.result = (item.correctAnswer === answer);
+            }
+            
+            practice();
+            if (item.result) {
+                alert('Correct :D');
+            } else {
+                alert('Wrong :(');
+            }
+        }
+    
+        var clear = function () {
+            document.getElementById("question").innerHTML = '....................';
+            document.getElementById("answer").value = '';
+        }
+    </script>
+
+</body>
+</html>
