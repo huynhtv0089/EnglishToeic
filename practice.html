@@ -103,6 +103,192 @@
             document.getElementById("answer").value = '';
         }
     </script>
+    <script>
+        var presentContinuous = [
+            {
+                "question": "Look! The train is coming",
+                "correctAnswer": "Nhìn kìa! tàu đang đến"
+            },
+            {
+                "question": "Listen! Someone is crying",
+                "correctAnswer": "Nghe này! Ai đó đang khóc"
+            },
+            {
+                "question": "Keep silent! The baby is sleeping",
+                "correctAnswer": "Hãy im lặng! Em bé đang ngủ"
+            },
+            {
+                "question": "Watch out! The train is coming!",
+                "correctAnswer": "Coi chừng! Đoàn tàu đang đến gần kìa!"
+            },
+            {
+                "question": "It is raining now",
+                "correctAnswer": "Trời đang mưa"
+            },
+            {
+                "question": "I’m not working at the moment",
+                "correctAnswer": "Tôi đang không làm việc vào lúc này"
+            },
+            {
+                "question": "The movie ends when Thor is wondering where to land the ship",
+                "correctAnswer": "Phim kết thúc khi Thor đang băn khoăn không biết hạ cánh con tàu ở đâu"
+            },
+            {
+                "question": "I’m reading a novel to the chapter when the main character is losing everything he has built",
+                "correctAnswer": "Tôi đang đọc một cuốn tiểu thuyết đến chương khi nhân vật chính mất đi tất cả những gì anh ấy đã xây dựng"
+            },
+            {
+                "question": "Your son is growing quickly",
+                "correctAnswer": "Con trai bạn lớn thật nhanh"
+            },
+            {
+                "question": "My English is improving",
+                "correctAnswer": "Tiếng Anh của tôi đang được cải thiện"
+            },
+            {
+                "question": "What sort of clothes are teenagers wearing nowadays ?",
+                "correctAnswer": "Quần áo thời trang mà thiếu niên ngày nay hay mặc là gì ?"
+            },
+            {
+                "question": "What sort of music are they listening to ?",
+                "correctAnswer": "Thể loại nhạc nào mà chúng thích nghe ?"
+            },
+            {
+                "question": "These days most people are using email instead of writing letters",
+                "correctAnswer": "Ngày nay hầu hết mọi người sử dụng email thay vì viết thư tay"
+            },
+            {
+                "question": "She is always coming late",
+                "correctAnswer": "Cô ấy toàn đến muộn"
+            },
+            {
+                "question": "He is always borrowing our books and then he doesn’t remember",
+                "correctAnswer": "Anh ấy thường xuyên mượn sách của của chúng ta nhưng chẳng bao giờ chịu nhớ"
+            },
+            {
+                "question": "At eight o’clock we are usually having breakfast",
+                "correctAnswer": "Chúng tôi thường ăn sáng vào lúc 8 giờ"
+            },
+            {
+                "question": "What are you doing tomorrow ?",
+                "correctAnswer": "Ngày mai bạn dự định sẽ làm gì ?"
+            },
+            {
+                "question": "Winter is coming",
+                "correctAnswer": "Mùa đông sắp đến rồi"
+            },
+            {
+                "question": "He is finding a job",
+                "correctAnswer": "Anh ấy đang tìm kiếm một công việc"
+            },
+            {
+                "question": "I am quite busy these days. I am doing my assignment",
+                "correctAnswer": "Dạo này tôi khá bận, tôi đang làm luận án"
+            },
+            {
+                "question": "I am working right now",
+                "correctAnswer": "Bây giờ tôi đang làm việc"
+            },
+            {
+                "question": "We are watching TV now",
+                "correctAnswer": "Bây giờ chúng tôi xem phim"
+            }
+        ];
 
+        var presentPerfect = [
+            {
+                "question": "Bạn không thể gọi tôi. Tôi đánh mất điện thoại di động của mình rồi",
+                "correctAnswer": "You can’t call me. I have lost my mobile phone"
+            },
+            {
+                "question": "Phòng buôn bán đã tăng doanh thu bán hàng lên gấp đôi",
+                "correctAnswer": "The sales team has doubled its turnover"
+            },
+            {
+                "question": "Họ đã hủy buổi họp",
+                "correctAnswer": "They have cancelled the meeting"
+            },
+            {
+                "question": "Tôi đã làm vỡ đồng hồ vậy nên tôi không biết bây giờ là mấy giờ",
+                "correctAnswer": "I’ve broken my watch so I don’t know what time it is"
+            },
+            {
+                "question": "Ai đó đã chiếm chỗ ngồi của tôi rồi",
+                "correctAnswer": "Someone has taken my seat"
+            },
+            {
+                "question": "Tôi không thể về nhà. Tôi vừa mất xe đạp",
+                "correctAnswer": "I can’t get home. I have lost my bike"
+            },
+            {
+                "question": "Có Jaden vừa mới đến không ?",
+                "correctAnswer": "Has Jaden just arrived ?"
+            },
+            {
+                "question": "Chúng tôi vừa mới ăn xong",
+                "correctAnswer": "We have just eaten"
+            },
+            {
+                "question": "Tôi chưa bao giờ tới nước Mỹ",
+                "correctAnswer": "I have never been to America"
+            },
+            {
+                "question": "Ngày sinh nhật vừa rồi là ngày tuyệt vời nhất tôi từng có",
+                "correctAnswer": "My last birthday was the best day I have ever had"
+            },
+            {
+                "question": "Gia đình tôi đã xem bộ phim này ba lần",
+                "correctAnswer": "Our family have seen this film three times"
+            },
+            {
+                "question": "David đã viết được năm cuốn sách và đang tiếp tục với cuốn tiếp theo",
+                "correctAnswer": "David has written five books and is working on another one"
+            },
+            {
+                "question": "Hôm nay tôi đã uống bốn ly cà phê. (có thể tôi còn uống thêm nữa trước khi hết ngày hôm nay)",
+                "correctAnswer": "I’ve drunk four cups of coffee today (perhaps I’ll drink more before today finished)"
+            },
+            {
+                "question": "Những cuốn sách kia đã không được đọc trong nhiều năm",
+                "correctAnswer": "Those books haven’t been read for years"
+            },
+            {
+                "question": "Jane đã ở cùng bố mẹ kể từ khi cô ấy tốt nghiệp",
+                "correctAnswer": "Jane has stayed with her parents since she graduated"
+            },
+            {
+                "question": "Tại sao anh ấy vẫn chưa ăn cái bánh này ?",
+                "correctAnswer": "Why has he not eaten this cake yet ?"
+            },
+            {
+                "question": "Why has he not eaten this cake yet ?",
+                "correctAnswer": "Where have you and your kids been ?"
+            },
+            {
+                "question": "Cậu đã làm xong bài về nhà chưa ?",
+                "correctAnswer": "Have you finished your homework yet ?"
+            },
+            {
+                "question": "Anh ấy đã bao giờ đi tới Châu Âu chưa ?",
+                "correctAnswer": "Has he ever travelled to Europe ?"
+            },
+            {
+                "question": "Cô ấy đã không gặp các bạn cùng lớp trong một thời gian dài",
+                "correctAnswer": "She hasn’t met her classmates for a long time"
+            },
+            {
+                "question": "Họ đã không chơi bóng đá trong nhiều năm",
+                "correctAnswer": "They haven’t played football for years"
+            },
+            {
+                "question": "Chúng tôi đã làm việc trong nhà máy này được 15 năm",
+                "correctAnswer": "We have worked in this factory for 15 years"
+            },
+            {
+                "question": "Cô ấy đã sống ở Sài Gòn kể từ khi còn bé",
+                "correctAnswer": "She has lived in Saigon since she was a little girl"
+            }
+        ]
+    </script>
 </body>
 </html>
