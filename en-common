@@ -22,6 +22,8 @@ I'm creating and installing an SSL certificate via command line for the first ti
 
 I want to authorize access to my Amazon API Gateway API resources using custom scopes in an Amazon Cognito user pool. How do I do that?
 
+Are you talking about using your own custom identity provider with cognito?
+
 The DefectDojo-Java-Client has been moved to https://github.com/SDA-SE/defectdojo-client. In case you are looking for a java library, take a look at https://github.com/secureCodeBox/defectdojo-client-java.
 
 1. Go to URL in your browser:
