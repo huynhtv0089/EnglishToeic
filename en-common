@@ -24,6 +24,8 @@ I want to authorize access to my Amazon API Gateway API resources using custom s
 
 Are you talking about using your own custom identity provider with cognito?
 
+There is no other specific service on AWS for this
+
 The DefectDojo-Java-Client has been moved to https://github.com/SDA-SE/defectdojo-client. In case you are looking for a java library, take a look at https://github.com/secureCodeBox/defectdojo-client-java.
 
 1. Go to URL in your browser:
