@@ -104,6 +104,7 @@ How to achieve this?
 FluentD cũng là một công cụ dùng để thu thập log giống như Filebeat và Logstash. FluentD bao gồm các tính năng như theo dõi log, thu thập, phân tích và chuyển đổi log thành dạng thích hợp để lưu vào Elasticsearch. FluentD được phát triển bởi Cloud Native Computing Foundation (CNCF), đây là tổ chức phát triển và bảo trì kubernetes.
 
 I’m really excited to announce KSQL, a streaming SQL engine for Apache Kafka
+You no longer need to write code in a programming language such as Java or Python! KSQL is distributed, scalable, reliable, and real time
 
 Todo:
   k8s
