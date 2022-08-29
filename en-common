@@ -103,6 +103,8 @@ How to achieve this?
 2 tech stack phổ biến nhất hiện nay cho việc log là ELK (Elasticsearch Logstash Kibana) và EFK (Elasticsearch FluentD Kibana).
 FluentD cũng là một công cụ dùng để thu thập log giống như Filebeat và Logstash. FluentD bao gồm các tính năng như theo dõi log, thu thập, phân tích và chuyển đổi log thành dạng thích hợp để lưu vào Elasticsearch. FluentD được phát triển bởi Cloud Native Computing Foundation (CNCF), đây là tổ chức phát triển và bảo trì kubernetes.
 
+I’m really excited to announce KSQL, a streaming SQL engine for Apache Kafka
+
 Todo:
   k8s
   aws
