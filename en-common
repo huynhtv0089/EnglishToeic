@@ -169,3 +169,5 @@ Todo:
     </build>
 
 Do you know where the documentation can be found for these endpoints?
+Use a colon (:) to separate header name and value, and new lines to declare multiple headers. eg. Accept:application/json.
+Enter the name of the API before confirming this action
